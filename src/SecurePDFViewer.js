@@ -47,6 +47,36 @@ export default function SecurePDFApp() {
 }
 
 // Login Component
+// Add this to your login component
+useEffect(() => {
+  // Simple device fingerprinting
+  const generateDeviceFingerprint = () => {
+    const screen = `${window.screen.width}x${window.screen.height}x${window.screen.colorDepth}`;
+    const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+    const language = navigator.language;
+    const platform = navigator.platform;
+    const userAgent = navigator.userAgent;
+    
+    // Create a simple hash from the device information
+    return btoa(`${screen}-${timezone}-${language}-${platform}-${userAgent.substring(0, 50)}`);
+  };
+  
+  // Store the fingerprint in localStorage when user logs in
+  const storeDeviceFingerprint = () => {
+    const fingerprint = generateDeviceFingerprint();
+    localStorage.setItem('device_fingerprint', fingerprint);
+    
+    // You'd also want to send this to your backend to store with the user account
+  };
+  
+  // Check if this is a new device
+  const checkDeviceFingerprint = () => {
+    const storedFingerprint = localStorage.getItem('device_fingerprint');
+    const currentFingerprint = generateDeviceFingerprint();
+    
+    return storedFingerprint === currentFingerprint;
+  };
+}, []);
 function LoginScreen({ username, setUsername, password, setPassword, showPassword, setShowPassword, loginError, handleLogin }) {
   return (
     <div className="flex items-center justify-center w-full h-full bg-gradient-to-b from-blue-50 to-blue-100">
