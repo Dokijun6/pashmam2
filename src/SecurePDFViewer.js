@@ -132,7 +132,7 @@ function SecurePDFViewer() {
   const [pageNumber, setPageNumber] = useState(1);
   const [scale, setScale] = useState(1);
   const [isFullscreen, setIsFullscreen] = useState(false);
-  const [securityActive, setSecurityActive] = useState(true);
+  const [securityActive] = useState(true);
   const [screenCaptureAttempted, setScreenCaptureAttempted] = useState(false);
   
   const containerRef = useRef(null);
