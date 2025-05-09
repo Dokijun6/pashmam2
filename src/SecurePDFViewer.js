@@ -139,7 +139,7 @@ function SecurePDFViewer() {
   const screenshotOverlayRef = useRef(null);
   
   // Your pre-uploaded PDF path
-  const pdfFile = "/api/placeholder/400/320"; // Replace with your actual PDF path
+  const pdfFile = "/document.pdf"; // Replace with your actual PDF path
   
   // Function to handle document loading success
   function onDocumentLoadSuccess({ numPages }) {
